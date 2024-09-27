@@ -75,15 +75,5 @@ def run_discord_bot():
 
 # Start both Flask and Discord bot in separate threads
 if __name__ == "__main__":
-    app = Flask(__name__)
-
-    @app.route('/')
-    def hello_world():
-        return 'Hello, World!'
-
-    # # Start Flask server in a separate thread
-    # flask_thread = Thread(target=run_flask)
-    # flask_thread.start()
-
     # Run Discord bot in the main thread
     run_discord_bot()
