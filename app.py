@@ -1,11 +1,12 @@
-import discord
 import json
-from discord import app_commands
-from openai import OpenAI
-import dotenv
 import os
-from flask import Flask
 from threading import Thread
+
+import discord
+import dotenv
+from discord import app_commands
+from flask import Flask
+from openai import OpenAI
 
 # Set up Flask app
 app = Flask(__name__)
@@ -67,19 +68,22 @@ async def translate_text(text, target_language="en"):
     except Exception as e:
         return f"Error: {str(e)}"
 
-# Function to run Flask app
-def run_flask():
-    app.run(host="0.0.0.0", port=5000)
-
 # Function to run Discord bot
 def run_discord_bot():
     client.run(DISCORD_TOKEN)
 
+
 # Start both Flask and Discord bot in separate threads
 if __name__ == "__main__":
-    # Start Flask server in a separate thread
-    flask_thread = Thread(target=run_flask)
-    flask_thread.start()
+    app = Flask(__name__)
+
+    @app.route('/')
+    def hello_world():
+        return 'Hello, World!'
+
+    # # Start Flask server in a separate thread
+    # flask_thread = Thread(target=run_flask)
+    # flask_thread.start()
 
     # Run Discord bot in the main thread
     run_discord_bot()
