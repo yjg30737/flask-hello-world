@@ -4,6 +4,14 @@ from discord import app_commands
 
 from openai import OpenAI
 
+# Set the API key and Discord token
+import dotenv
+import os
+
+dotenv.load_dotenv()
+api_key = os.getenv('OPENAI_API_KEY')
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+
 # Need to set the intents to default
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
